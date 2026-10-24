@@ -27,7 +27,7 @@ export interface CircleTakePaths {
 
 export function defaultCircleTakePaths(): CircleTakePaths {
   return {
-    recentsFile: join(homedir(), 'Library', 'Application Support', 'circle-take-kids-3d', 'recents.json')
+    recentsFile: join(homedir(), 'Library', 'Application Support', 'circle-take-biblical-period', 'recents.json')
   }
 }
 

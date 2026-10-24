@@ -11,7 +11,7 @@ import type { Project, ProjectMeta } from '../shared/types'
 
 export function projectsRoot(): string {
   // SLATE_DATA_DIR overrides the default location (portable installs, tests).
-  return process.env.SLATE_DATA_DIR || join(app.getPath('documents'), 'Slate Kids 3D')
+  return process.env.SLATE_DATA_DIR || join(app.getPath('documents'), 'Slate Biblical Cinema')
 }
 
 function projectDir(id: string): string {

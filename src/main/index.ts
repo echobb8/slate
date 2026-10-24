@@ -52,7 +52,7 @@ function createWindow(): void {
   })
 }
 
-app.setName('Slate Kids 3D')
+app.setName('Slate Biblical Cinema')
 
 app.setAboutPanelOptions({
   applicationName: 'Slate',

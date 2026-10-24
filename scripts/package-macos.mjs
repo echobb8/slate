@@ -1,4 +1,4 @@
-// Package Slate Kids 3D.app for macOS — no electron-builder, no downloads.
+// Package Slate Biblical Cinema.app for macOS — no electron-builder, no downloads.
 // Copies the local Electron runtime, rebrands the bundle (name, id, icon),
 // drops the built app into Resources/app, and ad-hoc signs the result.
 // Usage: node scripts/package-macos.mjs [--install]
@@ -14,7 +14,7 @@ const run = (cmd, args) => execFileSync(cmd, args, { stdio: ['ignore', 'ignore',
 const electronApp = resolve(root, 'node_modules/electron/dist/Electron.app')
 const dist = resolve(root, 'dist')
 const pkgVersion = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8')).version
-const appPath = resolve(dist, 'Slate Kids 3D.app')
+const appPath = resolve(dist, 'Slate Biblical Cinema.app')
 
 if (!existsSync(resolve(root, 'out/main/index.js'))) {
   console.error('No build found — run `npm run build` first.')
@@ -51,7 +51,7 @@ cpSync(resolve(root, 'build/icon.png'), resolve(payload, 'build/icon.png'), { re
 cpSync(resolve(root, 'mcp'), resolve(payload, 'mcp'), { recursive: true })
 writeFileSync(
   resolve(payload, 'package.json'),
-  JSON.stringify({ name: 'slate-kids-3d', productName: 'Slate Kids 3D', version: pkgVersion, main: 'out/main/index.js' }, null, 2)
+  JSON.stringify({ name: 'slate-biblical-period', productName: 'Slate Biblical Cinema', version: pkgVersion, main: 'out/main/index.js' }, null, 2)
 )
 
 console.log('→ rebranding bundle')
@@ -59,9 +59,9 @@ cpSync(resolve(dist, 'slate.icns'), resolve(res, 'slate.icns'))
 rmSync(resolve(res, 'electron.icns'), { force: true })
 const plist = resolve(appPath, 'Contents/Info.plist')
 const pb = (args) => run('/usr/libexec/PlistBuddy', [...args, plist])
-pb(['-c', 'Set :CFBundleName Slate Kids 3D'])
-pb(['-c', 'Set :CFBundleDisplayName Slate Kids 3D'])
-pb(['-c', 'Set :CFBundleIdentifier com.wassermanproductions.slate.kids3d'])
+pb(['-c', 'Set :CFBundleName Slate Biblical Cinema'])
+pb(['-c', 'Set :CFBundleDisplayName Slate Biblical Cinema'])
+pb(['-c', 'Set :CFBundleIdentifier com.wassermanproductions.slate.biblical'])
 pb(['-c', 'Set :CFBundleIconFile slate.icns'])
 pb(['-c', 'Set :CFBundleExecutable Slate'])
 pb(['-c', `Set :CFBundleShortVersionString ${pkgVersion}`])
@@ -71,9 +71,9 @@ console.log('→ ad-hoc signing')
 run('codesign', ['--force', '--deep', '--sign', '-', appPath])
 
 if (process.argv.includes('--install')) {
-  console.log('→ installing to /Applications/Slate Kids 3D.app')
-  rmSync('/Applications/Slate Kids 3D.app', { recursive: true, force: true })
-  run('ditto', [appPath, '/Applications/Slate Kids 3D.app'])
+  console.log('→ installing to /Applications/Slate Biblical Cinema.app')
+  rmSync('/Applications/Slate Biblical Cinema.app', { recursive: true, force: true })
+  run('ditto', [appPath, '/Applications/Slate Biblical Cinema.app'])
 }
 
 console.log('✓ packaged', appPath)
