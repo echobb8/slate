@@ -1,3 +1,4 @@
+import type { ProductionSettings } from './production'
 // Shared data model for Slate — used by main, preload, and renderer.
 
 export type SectionId = 'subject' | 'composition' | 'lighting' | 'camera' | 'style' | 'mood'
@@ -250,6 +251,7 @@ export interface ChatMsg {
 }
 
 export interface Project {
+  production?: ProductionSettings
   id: string
   name: string
   logline: string

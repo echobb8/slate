@@ -1,3 +1,4 @@
+import { defaultProduction } from '../../../shared/production'
 import type { Project } from '../../../shared/types'
 
 export function newProjectShape(name: string): Project {
@@ -5,6 +6,7 @@ export function newProjectShape(name: string): Project {
   return {
     id: `p-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
     name,
+    production: defaultProduction(),
     logline: '',
     world: '',
     defaults: {

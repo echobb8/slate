@@ -1,3 +1,4 @@
+import { EDITION_LABEL } from '../../../shared/production'
 import React, { useState } from 'react'
 import { useProject } from '../stores/project'
 import brandArt from '../assets/brand.webp'
@@ -25,7 +26,7 @@ export default function Home(): React.JSX.Element {
         <div className="home-hero">
           <img className="home-brand" src={brandArt} alt="Slate — prompt studio for AI filmmaking" />
           <p>
-            Plan shots, direct coverage, spot your score, cast your voices, keep continuity — and
+            {EDITION_LABEL}: plan shots, direct coverage, cast voices, keep continuity — and
             compile production-ready prompts for any generator.
           </p>
           {brain && !brain.claude.available && !brain.codex.available && (
@@ -38,7 +39,7 @@ export default function Home(): React.JSX.Element {
 
         <div className="home-new">
           <input
-            placeholder="New project title — e.g. Night Market"
+            placeholder="New project title"
             value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && submit()}

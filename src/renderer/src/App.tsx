@@ -1,3 +1,4 @@
+import { ProductionPanel } from './components/ProductionPanel'
 import React, { useEffect, useState } from 'react'
 import { useProject } from './stores/project'
 import Navigator from './components/Navigator'
@@ -63,6 +64,7 @@ export default function App(): React.JSX.Element {
           <b>◆</b>&nbsp;&nbsp;S L A T E
         </div>
         <div className="titlebar-side">
+          {project && <ProductionPanel value={project.production} onChange={(production) => useProject.getState().mutate((p) => { p.production = production })} />}
           {dirty && <span className="save-dot" title="Saving…" />}
           <button className="btn btn-ghost btn-sm" title="Slate Help (⌘/)" onClick={() => setHelpOpen(true)}>
             ?

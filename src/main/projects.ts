@@ -1,3 +1,4 @@
+import { defaultProduction } from '../shared/production'
 // Project persistence — one folder per project under ~/Documents/Slate.
 // Projects are small JSON (prompts + sheets); reference media is linked, never copied.
 
@@ -10,7 +11,7 @@ import type { Project, ProjectMeta } from '../shared/types'
 
 export function projectsRoot(): string {
   // SLATE_DATA_DIR overrides the default location (portable installs, tests).
-  return process.env.SLATE_DATA_DIR || join(app.getPath('documents'), 'Slate')
+  return process.env.SLATE_DATA_DIR || join(app.getPath('documents'), 'Slate Kids 3D')
 }
 
 function projectDir(id: string): string {
@@ -61,6 +62,7 @@ export function newProject(name: string): Project {
   return {
     id: randomUUID(),
     name,
+    production: defaultProduction(),
     logline: '',
     world: '',
     defaults: {

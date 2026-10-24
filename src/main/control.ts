@@ -20,7 +20,7 @@ function descriptorPath(): string {
     process.platform === 'win32'
       ? process.env.APPDATA || join(homedir(), 'AppData', 'Roaming')
       : join(homedir(), '.config')
-  return join(base, 'slate', 'control.json')
+  return join(base, 'slate-kids-3d', 'control.json')
 }
 
 async function readBody(req: IncomingMessage): Promise<string> {

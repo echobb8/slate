@@ -1,3 +1,4 @@
+import { productionDirection } from '../../../shared/production'
 // Deliverables — compile a shot into a target model's dialect, enforce limits,
 // and produce copy-ready output. Brain-assisted when reshaping is needed.
 
@@ -125,6 +126,7 @@ Return JSON: {"prompt":"<the compiled prompt in the target dialect>"${profile.fe
 /** Plain-text scene export — a markdown shot list ready for prepro docs. */
 export function exportSceneMarkdown(p: Project, scene: Scene): string {
   const lines: string[] = [`# ${p.name} — ${scene.name}`, '']
+  lines.push(productionDirection(p.production), '')
   if (scene.synopsis) lines.push(scene.synopsis, '')
   for (const shot of scene.shots) {
     const s = shot.spec
@@ -157,7 +159,7 @@ export function exportSceneMarkdown(p: Project, scene: Scene): string {
 export function exportSceneCsv(p: Project, scene: Scene): string {
   const esc = (v: string): string => `"${(v || '').replace(/"/g, '""')}"`
   const rows = [
-    ['shot', 'intent', 'duration_s', 'fps', 'aspect', 'size', 'angle', 'lens', 'movement', 'target_model', 'prompt']
+    ['shot', 'intent', 'duration_s', 'fps', 'aspect', 'size', 'angle', 'lens', 'movement', 'target_model', 'production_direction', 'prompt']
       .map(esc)
       .join(',')
   ]
@@ -175,6 +177,7 @@ export function exportSceneCsv(p: Project, scene: Scene): string {
         s.lens ?? '',
         s.movement ?? '',
         shot.targetModel ?? '',
+        productionDirection(p.production),
         shot.prompt
       ]
         .map(esc)

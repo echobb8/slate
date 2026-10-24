@@ -1,3 +1,4 @@
+import { productionDirection } from '../../../shared/production'
 // Brain task layer — builds the system + task prompts for every agent feature.
 // Tier policy: mechanical text work runs fast/standard; creative direction runs top.
 
@@ -51,7 +52,7 @@ function describeSpec(shot: Shot): string {
 
 export function projectContext(p: Project, scene?: Scene | null): string {
   const lines: string[] = []
-  lines.push(`PROJECT: ${p.name}`)
+  lines.push(`PROJECT: ${p.name}`, productionDirection(p.production))
   if (p.logline) lines.push(`Logline: ${p.logline}`)
   if (p.world) lines.push(`World & tone: ${p.world}`)
   if (p.characters.length) {

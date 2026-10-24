@@ -52,7 +52,7 @@ function createWindow(): void {
   })
 }
 
-app.setName('Slate')
+app.setName('Slate Kids 3D')
 
 app.setAboutPanelOptions({
   applicationName: 'Slate',
